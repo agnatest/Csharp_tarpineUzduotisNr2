@@ -1,0 +1,6 @@
+C:\Users\Agna\source\repos\CSharp\TarpineUzd2\TarpineUzd2\bin\Debug\TarpineUzd2.exe.config
+C:\Users\Agna\source\repos\CSharp\TarpineUzd2\TarpineUzd2\bin\Debug\TarpineUzd2.exe
+C:\Users\Agna\source\repos\CSharp\TarpineUzd2\TarpineUzd2\bin\Debug\TarpineUzd2.pdb
+C:\Users\Agna\source\repos\CSharp\TarpineUzd2\TarpineUzd2\obj\Debug\TarpineUzd2.csprojAssemblyReference.cache
+C:\Users\Agna\source\repos\CSharp\TarpineUzd2\TarpineUzd2\obj\Debug\TarpineUzd2.exe
+C:\Users\Agna\source\repos\CSharp\TarpineUzd2\TarpineUzd2\obj\Debug\TarpineUzd2.pdb
