@@ -11,20 +11,50 @@ namespace TarpineUzd2
     {
         static void Main(string[] args)
         {
+            List<char> atsakymas = new List<char>();
+            char[][] DuruSpyna1 = new char[3][];
 
-            int[,] DuruKodas1 = new int[3, 3] { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } };
-            char[][] DuruKodas2 =
-             { 
-                new char[] { '1' },
-                new char[] { '2', '3', '4' },
-                new char[] { '5', '6', '7', '8', '9' },
-                new char[] { 'A', 'B', 'C' },
-                new char[] { 'D' }
-             };
+            DuruSpyna1[0] = new char[] { '1', '2', '3' };
+            DuruSpyna1[1] = new char[] { '4', '5', '6' };
+            DuruSpyna1[2] = new char[] { '7', '8', '9' };
+
+            atspausdintiDuruSpyna(DuruSpyna1, 1);
+
+            char[][] DuruSpyna2 = new char[5][];
+
+            DuruSpyna2[0] = new char[1] { '1' };
+            DuruSpyna2[1] = new char[3] { '2', '3', '4' };
+            DuruSpyna2[2] = new char[5] { '5', '6', '7', '8', '9' };
+            DuruSpyna2[3] = new char[3] { 'A', 'B', 'C' };
+            DuruSpyna2[4] = new char[1] { 'D' };
+
+            atspausdintiDuruSpyna(DuruSpyna2, 2);
 
             string path = "abc.txt";
-            StreamReader sr = new StreamReader(path);
+            skaitytiFaila(path);
 
+            atspausdintiDuruKoda(sifruotiKoda(path, DuruSpyna1), 1);
+            //su antra duru spyna - nepamirst
+            Console.ReadLine();
+
+        }
+
+        private static void atspausdintiDuruSpyna(char[][] spyna, int numeris)
+        {
+            Console.WriteLine("Durų spyna numeris {0}: ", numeris);
+            for (int n = 0; n < spyna.Length; n++)
+            {
+                for (int m = 0; m < spyna[n].Length; m++)
+                {
+                    Console.Write("{0}", spyna[n][m]);
+                }
+                Console.WriteLine();
+            }
+        }
+
+        private static void skaitytiFaila(string path)
+        {
+            StreamReader sr = new StreamReader(path);
             string tekstas = sr.ReadToEnd();
             string eil = "";
             List<string> eilutes = new List<string>();
@@ -33,21 +63,19 @@ namespace TarpineUzd2
                 eilutes.Add(eil);
             }
             sr.Close();
+        }
 
-            //Pirmas metodas kai sukuriam sarasa ir priskiriame jam 
-            //pradines reiksmes is tekstinio failo
-            List<string> eiles = new List<string>(File.ReadAllLines(path));
+        private static List<char> sifruotiKoda(string path, char[][] spyna)
+            {
+                List<string> eiles = new List<string>(File.ReadAllLines(path).ToList());
+                var atsakymas = new List<char>();
+                char ats = ' '; // sarasas bus naudojamas galutiniam kodui parasyti
+                int eilute = 1;
+                int stulpelis = 1;
+                char item = spyna[1][1]; //pradinis taskas
+                int skaitliukas = 0;
 
-            //Antras metodas kai sukuriamas sarasas uz mus
-            eiles = File.ReadAllLines(path).ToList();
-
-            int DuruKodo1Pradzia = DuruKodas1[1, 1]; // 5 duru kodo pradzia
-            int atsakymas = 0; // bus naudojamas galutiniam kodui parasyti
-            int eilute = 1;
-            int stulpelis = 1;
-            int skaicius;
-
-            int skaitliukas = 0;
+        Console.WriteLine("Perskaitytas failas {0} ir jo turinys: ", path);
             foreach (string eile in eiles)
             {
                 if (string.IsNullOrEmpty(eile))
@@ -56,119 +84,96 @@ namespace TarpineUzd2
                 }
                 else
                 {
-                    Console.WriteLine("[{0}][{1}]", skaitliukas, eile);
+                    Console.WriteLine("{0}", eile);
                     skaitliukas++;
 
                     foreach (char raide in eile)
                     {
-                        Console.WriteLine("[{0}]", raide);
-
-                            for (int i = 0; i < DuruKodas1.GetLength(0) - 2; i++)
-                            {
-
+                        for (int i = 0; i< spyna.Length-2; i++)
+                        {
                                 if (raide == 'U')
                                 {
                                     eilute = eilute - 1;
-
                                     if (eilute >= 0 && eilute <= 2)
                                     {
-                                        skaicius = DuruKodas1[eilute, stulpelis];
-                                        Console.WriteLine("{0}", skaicius);
-                                    }
+                                        item = spyna[eilute][stulpelis];
+                                   
+                                }
                                     else
                                     {
-                                        skaicius = DuruKodas1[eilute + 1, stulpelis];
-                                        Console.WriteLine("{0}", skaicius);
-                                    }
+                                        eilute = eilute + 1;
+                                        item = spyna[eilute][stulpelis];
+                                   
+                                } 
                                 }
 
                                 else if (raide == 'D')
                                 {
                                     eilute = eilute + 1;
-
                                     if (eilute >= 0 && eilute <= 2)
-                                {
-                                        skaicius = DuruKodas1[eilute, stulpelis];
-                                        Console.WriteLine("{0}", skaicius);
-                                    }
+                                    {
+                                        item  = spyna[eilute][stulpelis];
+                                  
+                                }
                                     else
                                     {
-                                        skaicius = DuruKodas1[eilute - 1, stulpelis];
-                                        Console.WriteLine("{0}", skaicius);
-                                    }
+                                        eilute = eilute - 1;
+                                        item = spyna[eilute][stulpelis];
+                                   
                                 }
+                                }
+
                                 else if (raide == 'L')
                                 {
                                     stulpelis = stulpelis - 1;
                                     if (stulpelis >= 0 && stulpelis <= 2)
                                     {
-                                        skaicius = DuruKodas1[eilute, stulpelis];
-                                        Console.WriteLine("{0}", skaicius);
-                                    }
+                                    item = spyna[eilute][stulpelis];
+                                   
+                                }
                                     else
                                     {
-                                        skaicius = DuruKodas1[eilute, stulpelis + 1];
-                                        Console.WriteLine("{0}", skaicius);
-                                    }
-
+                                        stulpelis = stulpelis + 1;
+                                    item = spyna[eilute][stulpelis];
+                                   
+                                }
                                 }
 
                                 else if (raide == 'R')
-                                {
+                                {         
                                     stulpelis = stulpelis + 1;
                                     if (stulpelis >= 0 && stulpelis <= 2)
                                     {
-                                        skaicius = DuruKodas1[eilute, stulpelis];
-                                        Console.WriteLine("{0}", skaicius);
-                                    }
+                                    item = spyna[eilute][stulpelis];
+                                   
+                                }
                                     else
                                     {
-                                        skaicius = DuruKodas1[eilute, stulpelis - 1];
-                                        Console.WriteLine("{0}", skaicius);
-                                    }
+                                        stulpelis = stulpelis - 1;
+                                    item = spyna[eilute][stulpelis];
+                                  
                                 }
-
-                                //  Console.WriteLine("{0}", skaicius);
-                            }
-
-                        
+                                }  
+                        }
+                      
                     }
+                    ats = atsakymas.Add(item);
+                   
                 }
+                return atsakymas;
             }
 
-                Console.ReadLine();
+           }
 
-
-
-
-
-                //for (int i = 0; i < DuruKodas1.GetLength(0); i++)
-                //{
-                //    string skaicius = "";
-                //    for (int j = 0; j < DuruKodas1.GetLength(1); j++)
-                //    {
-                //        skaicius = DuruKodas1[i+1, j] + " ";
-
-                //    }
-                //    Console.WriteLine("[{0}]", skaicius);
-                //}
-
-                //for (int i = 0; i < 4; i++)
-                //{
-                //        for  (int j=0; j< 4; j++)
-                //        {           
-                //            if (raide == 'U')
-                //            {
-                //                 rodykle = rodykle++;
-                //                 Console.WriteLine("Ats yra: {1}", rodykle);
-                //            }
-                //            else if (raide == 'D') { }
-                //            else if (raide == 'L') { }
-                //            else if (raide == 'R') { }
-                //        }
-                //    }
-                //}
-
+        private static void atspausdintiDuruKoda(List<char> list, int numeris)
+        {
+            Console.Write("Iššifravus failą. Durų spynos {0} kodas gaunasi: ", numeris);
+            foreach (char item in list)
+            {
+                Console.Write(item);
+            }
         }
+
     }
 }
+
