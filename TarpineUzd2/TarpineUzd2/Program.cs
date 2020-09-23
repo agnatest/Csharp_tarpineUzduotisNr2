@@ -66,16 +66,16 @@ namespace TarpineUzd2
         }
 
         private static List<char> sifruotiKoda(string path, char[][] spyna)
-            {
+        {
                 List<string> eiles = new List<string>(File.ReadAllLines(path).ToList());
                 var atsakymas = new List<char>();
                 var ats = new List<char>(); // sarasas bus naudojamas galutiniam kodui parasyti
-            int eilute = 1;
+                int eilute = 1;
                 int stulpelis = 1;
                 char item = spyna[1][1]; //pradinis taskas
                 int skaitliukas = 0;
 
-        Console.WriteLine("Perskaitytas failas {0} ir jo turinys: ", path);
+            Console.WriteLine("Perskaitytas failas {0} ir jo turinys: ", path);
             foreach (string eile in eiles)
             {
                 if (string.IsNullOrEmpty(eile))
@@ -104,7 +104,7 @@ namespace TarpineUzd2
                                         eilute = eilute + 1;
                                         item = spyna[eilute][stulpelis];
                                    
-                                } 
+                                    } 
                                 }
 
                                 else if (raide == 'D')
@@ -120,7 +120,7 @@ namespace TarpineUzd2
                                         eilute = eilute - 1;
                                         item = spyna[eilute][stulpelis];
                                    
-                                }
+                                    }
                                 }
 
                                 else if (raide == 'L')
@@ -136,7 +136,7 @@ namespace TarpineUzd2
                                         stulpelis = stulpelis + 1;
                                     item = spyna[eilute][stulpelis];
                                    
-                                }
+                                    }
                                 }
 
                                 else if (raide == 'R')
@@ -152,14 +152,14 @@ namespace TarpineUzd2
                                         stulpelis = stulpelis - 1;
                                     item = spyna[eilute][stulpelis];
                                   
-                                }
+                                    }
                                 }  
                         }
                       
                     }
+
                     atsakymas = ats.Add(item);
 
-                   
                 }
                 return atsakymas;
             }
