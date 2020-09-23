@@ -115,11 +115,11 @@ namespace TarpineUzd2
                     {
                         for (int i = 0; i < spyna.Length - sumazininimas; i++)
                         {
-                            // foreach (char[] spynosItem in spyna)
+                            // foreach (char[] spynosItems in spyna)
                             // {
-                            //   if (spynosItem != null)
+                            //   if (spynosItems != null)
                             //   {
-                            //       foreach (char sItem in spynosItem)
+                            //       foreach (char sItem in spynosItems)
                             //       { 
                             for (int j = 0; j < spyna[i].Length - sumazininimas; j++)
                             {
