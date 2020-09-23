@@ -41,15 +41,10 @@ namespace TarpineUzd2
             //Antras metodas kai sukuriamas sarasas uz mus
             eiles = File.ReadAllLines(path).ToList();
 
-            Console.WriteLine(DuruKodas1[1, 1]);  // DuruKodas1 pradzia yra 5
-            int DuruKodo1Pradzia = DuruKodas1[1, 1];
-           
-            int atsakymas = 0;
-
-            // int[,] masyv = DuruKodas1;
+            int DuruKodo1Pradzia = DuruKodas1[1, 1]; // 5 duru kodo pradzia
+            int atsakymas = 0; // bus naudojamas galutiniam kodui parasyti
             int eilute = 1;
             int stulpelis = 1;
-            int[,] PirminisSkaicius = DuruKodas1;
             int skaicius;
 
             int skaitliukas = 0;
@@ -63,37 +58,74 @@ namespace TarpineUzd2
                 {
                     Console.WriteLine("[{0}][{1}]", skaitliukas, eile);
                     skaitliukas++;
+
                     foreach (char raide in eile)
                     {
                         Console.WriteLine("[{0}]", raide);
 
-                        
                             for (int i = 0; i < DuruKodas1.GetLength(0) - 2; i++)
                             {
-                                
+
                                 if (raide == 'U')
                                 {
-                                    skaicius = DuruKodas1[eilute - 1, stulpelis];
-                                    Console.WriteLine("{0}", skaicius);
-                                    
+                                    eilute = eilute - 1;
+
+                                    if (eilute >= 0 && eilute <= 2)
+                                    {
+                                        skaicius = DuruKodas1[eilute, stulpelis];
+                                        Console.WriteLine("{0}", skaicius);
+                                    }
+                                    else
+                                    {
+                                        skaicius = DuruKodas1[eilute + 1, stulpelis];
+                                        Console.WriteLine("{0}", skaicius);
+                                    }
                                 }
-                                if (raide == 'D')
+
+                                else if (raide == 'D')
                                 {
-                                    skaicius = DuruKodas1[eilute + 1, stulpelis]; ;
-                                    Console.WriteLine("{0}", skaicius);
-                                   
+                                    eilute = eilute + 1;
+
+                                    if (eilute >= 0 && eilute <= 2)
+                                {
+                                        skaicius = DuruKodas1[eilute, stulpelis];
+                                        Console.WriteLine("{0}", skaicius);
+                                    }
+                                    else
+                                    {
+                                        skaicius = DuruKodas1[eilute - 1, stulpelis];
+                                        Console.WriteLine("{0}", skaicius);
+                                    }
                                 }
-                                if (raide == 'L')
+                                else if (raide == 'L')
                                 {
-                                    skaicius = DuruKodas1[eilute, stulpelis - 1];
-                                    Console.WriteLine("{0}", skaicius);
-                                    
+                                    stulpelis = stulpelis - 1;
+                                    if (stulpelis >= 0 && stulpelis <= 2)
+                                    {
+                                        skaicius = DuruKodas1[eilute, stulpelis];
+                                        Console.WriteLine("{0}", skaicius);
+                                    }
+                                    else
+                                    {
+                                        skaicius = DuruKodas1[eilute, stulpelis + 1];
+                                        Console.WriteLine("{0}", skaicius);
+                                    }
+
                                 }
-                                if (raide == 'R')
+
+                                else if (raide == 'R')
                                 {
-                                    skaicius = DuruKodas1[eilute, stulpelis + 1]; ;
-                                    Console.WriteLine("{0}", skaicius);
-                                  
+                                    stulpelis = stulpelis + 1;
+                                    if (stulpelis >= 0 && stulpelis <= 2)
+                                    {
+                                        skaicius = DuruKodas1[eilute, stulpelis];
+                                        Console.WriteLine("{0}", skaicius);
+                                    }
+                                    else
+                                    {
+                                        skaicius = DuruKodas1[eilute, stulpelis - 1];
+                                        Console.WriteLine("{0}", skaicius);
+                                    }
                                 }
 
                                 //  Console.WriteLine("{0}", skaicius);
