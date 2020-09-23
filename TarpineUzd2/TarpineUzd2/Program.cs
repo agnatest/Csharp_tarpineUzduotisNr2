@@ -69,7 +69,6 @@ namespace TarpineUzd2
         {
                 List<string> eiles = new List<string>(File.ReadAllLines(path).ToList());
                 var atsakymas = new List<char>();
-                var ats = new List<char>(); // sarasas bus naudojamas galutiniam kodui parasyti
                 int eilute = 1;
                 int stulpelis = 1;
                 char item = spyna[1][1]; //pradinis taskas
@@ -134,7 +133,7 @@ namespace TarpineUzd2
                                     else
                                     {
                                         stulpelis = stulpelis + 1;
-                                    item = spyna[eilute][stulpelis];
+                                        item = spyna[eilute][stulpelis];
                                    
                                     }
                                 }
@@ -158,7 +157,7 @@ namespace TarpineUzd2
                       
                     }
 
-                    atsakymas = ats.Add(item);
+                    atsakymas.Add(item);
 
                 }
                 return atsakymas;
