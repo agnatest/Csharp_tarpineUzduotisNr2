@@ -13,7 +13,7 @@ namespace TarpineUzd2
         {
             // Tarpine uzduotis Nr2 - Agna Semaškaitė
 
-            // Reikia iššifruoti durų kodą, kuris duotas su teksto failu. (abc.txt ir input.txt)
+            // Reikia iššifruoti durų kodą, kuris duotas su teksto failu. (input1.txt ir input2.txt)
             // U, D, R, L raidės žymi atitinkamai kryptį - aukštyn, žemyn, dešinėn, kairėn.
             // Yra dvi durų spynos:
             // 1.   1 2 3
@@ -50,18 +50,29 @@ namespace TarpineUzd2
             atspausdintiDuruSpyna(DuruSpyna2, 2);
             atspausdintiLinija();
 
-            string path = "abc.txt"; //abc.txt arba input.txt
-            skaitytiFaila(path);
+            string path1 = "input1.txt"; //pirmos uzduoties teksto failas
+            string path2 = "input2.txt"; //antros uzduoties teksto failas
 
-            Console.WriteLine("\nPerskaitytas failas {0} ir jo turinys: ", path);
-            atspausdintiDuruKoda(sifruotiKoda(path, DuruSpyna1, 0, 2, 0, 2, 1, 1, 2), 1);
+            skaitytiFaila(path1);
+            skaitytiFaila(path2);
+
+            Console.WriteLine("\nUžduotis nr 1: ");
+            Console.WriteLine("\nPerskaitytas failas {0} ir jo turinys: ", path1);
+            atspausdintiDuruKoda(sifruotiKoda(path1, DuruSpyna1, 0, 2, 0, 2, 1, 1, 2), 1);
             atspausdintiLinija();
-            Console.WriteLine("\nPerskaitytas failas {0} ir jo turinys: ", path);
-            atspausdintiDuruKoda(sifruotiKoda(path, DuruSpyna2, 0, 4, 0, 5, 2, 0, 4), 2);
+            Console.WriteLine("\nPerskaitytas failas {0} ir jo turinys: ", path1);
+            atspausdintiDuruKoda(sifruotiKoda(path1, DuruSpyna2, 0, 4, 0, 4, 2, 0, 4), 2);
+            atspausdintiLinija();
+
+            Console.WriteLine("\nUžduotis nr 2: ");
+            Console.WriteLine("\nPerskaitytas failas {0} ir jo turinys: ", path2);
+            atspausdintiDuruKoda(sifruotiKoda(path2, DuruSpyna1, 0, 2, 0, 2, 1, 1, 2), 1);
+            atspausdintiLinija();
+            Console.WriteLine("\nPerskaitytas failas {0} ir jo turinys: ", path2);
+            atspausdintiDuruKoda(sifruotiKoda(path2, DuruSpyna2, 0, 4, 0, 4, 2, 0, 4), 2);
             atspausdintiLinija();
             Console.WriteLine("\nPrograma darbą baigė.");
             Console.ReadLine();
-
         }
         private static void atspausdintiDuruSpyna(char[][] spyna, int numeris)
         {
@@ -103,8 +114,7 @@ namespace TarpineUzd2
                 {
                     Console.WriteLine("{0}", eile);
                     skaitliukas++;
-
-                    Console.WriteLine("Pradinis taskas: {0}", item);
+                    //Console.WriteLine("Pradinis taskas: {0}", item);
 
                     foreach (char raide in eile)
                     {
@@ -121,22 +131,21 @@ namespace TarpineUzd2
                                         if (item != ' ')
                                         {
                                             item = spyna[eilute][stulpelis];
-                                            Console.WriteLine("Item: {0}", item);
+                                            //Console.WriteLine("Item: {0}", item);
                                         }
                                         else
                                         {
                                             eilute = eilute + 1;
                                             item = spyna[eilute][stulpelis];
-                                            Console.WriteLine("Item: {0}", item);
+                                            //Console.WriteLine("Item: {0}", item);
                                         }
                                     }
                                     else
                                     {
                                         eilute = eilute + 1;
                                         item = spyna[eilute][stulpelis];
-                                        Console.WriteLine("Item: {0}", item);
+                                        //Console.WriteLine("Item: {0}", item);
                                     }
-
                                 }
 
                                 else if (raide == 'D')
@@ -148,20 +157,20 @@ namespace TarpineUzd2
                                         if (item != ' ')
                                         {
                                             item = spyna[eilute][stulpelis];
-                                            Console.WriteLine("Item: {0}", item);
+                                            //Console.WriteLine("Item: {0}", item);
                                         }
                                         else
                                         {
                                             eilute = eilute - 1;
                                             item = spyna[eilute][stulpelis];
-                                            Console.WriteLine("Item: {0}", item);
+                                            //Console.WriteLine("Item: {0}", item);
                                         }
                                     }
                                     else
                                     {
                                         eilute = eilute - 1;
                                         item = spyna[eilute][stulpelis];
-                                        Console.WriteLine("Item: {0}", item);
+                                        //Console.WriteLine("Item: {0}", item);
                                     }
                                 }
 
@@ -176,20 +185,20 @@ namespace TarpineUzd2
                                             if (item != ' ')
                                             {
                                                 item = spyna[eilute][stulpelis];
-                                                Console.WriteLine("Item: {0}", item);
+                                                //Console.WriteLine("Item: {0}", item);
                                             }
                                             else
                                             {
                                                 stulpelis = stulpelis + 1;
                                                 item = spyna[eilute][stulpelis];
-                                                Console.WriteLine("Item: {0}", item);
+                                                //Console.WriteLine("Item: {0}", item);
                                             }
                                         }
                                         else
                                         {
                                             stulpelis = stulpelis + 1;
                                             item = spyna[eilute][stulpelis];
-                                            Console.WriteLine("Item: {0}", item);
+                                            //Console.WriteLine("Item: {0}", item);
                                         }
                                     }
                                 }
@@ -197,29 +206,26 @@ namespace TarpineUzd2
                                 else if (raide == 'R')
                                 {
                                     stulpelis = stulpelis + 1;
-                                    if (item != ' ')
+                                    if (stulpelis >= masyvoStulpeliuRezis1 && stulpelis <= masyvoStulpeliuRezis2)
                                     {
-                                        if (stulpelis >= masyvoStulpeliuRezis1 && stulpelis <= masyvoStulpeliuRezis2)
+                                        item = spyna[eilute][stulpelis];
+                                        if (item != ' ')
                                         {
                                             item = spyna[eilute][stulpelis];
-                                            if (item != ' ')
-                                            {
-                                                item = spyna[eilute][stulpelis];
-                                                Console.WriteLine("Item: {0}", item);
-                                            }
-                                            else
-                                            {
-                                                stulpelis = stulpelis + 1;
-                                                item = spyna[eilute][stulpelis];
-                                                Console.WriteLine("Item: {0}", item);
-                                            }
+                                            //Console.WriteLine("Item: {0}", item);
                                         }
                                         else
                                         {
                                             stulpelis = stulpelis - 1;
                                             item = spyna[eilute][stulpelis];
-                                            Console.WriteLine("Item: {0}", item);
+                                            //Console.WriteLine("Item: {0}", item);
                                         }
+                                    }
+                                    else
+                                    {
+                                        stulpelis = stulpelis - 1;
+                                        item = spyna[eilute][stulpelis];
+                                        //Console.WriteLine("Item: {0}", item);
                                     }
                                 }
                             }
@@ -242,7 +248,6 @@ namespace TarpineUzd2
         {
             Console.WriteLine("\n---------------------------------------------------\n");
         }
-
     }
 }
 
